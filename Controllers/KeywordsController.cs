@@ -10,112 +10,107 @@ using ProjectApp.Models;
 
 namespace ProjectApp.Controllers
 {
-    public class FavouritesController : Controller
+    public class KeywordsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Favourites
+        // GET: Words
         public ActionResult Index()
         {
-            var favourites = db.Favourites.Include(f => f.UserProduct);
-            return View(favourites.ToList());
+            return View(db.Keywords.ToList());
         }
 
-        // GET: Favourites/Details/5
+        // GET: Words/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Favourite favourite = db.Favourites.Find(id);
-            if (favourite == null)
+            Keyword keyword = db.Keywords.Find(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(favourite);
+            return View(keyword);
         }
 
-        // GET: Favourites/Create
+        // GET: Words/Create
         public ActionResult Create()
         {
-            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID");
             return View();
         }
 
-        // POST: Favourites/Create
+        // POST: Words/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID,UserProductID")] Favourite favourite)
+        public ActionResult Create([Bind(Include = "ID,Name")] Keyword keyword)
         {
             if (ModelState.IsValid)
             {
-                db.Favourites.Add(favourite);
+                db.Keywords.Add(keyword);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favourite.UserProductID);
-            return View(favourite);
+            return View(keyword);
         }
 
-        // GET: Favourites/Edit/5
+        // GET: Words/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Favourite favourite = db.Favourites.Find(id);
-            if (favourite == null)
+            Keyword keyword = db.Keywords.Find(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favourite.UserProductID);
-            return View(favourite);
+            return View(keyword);
         }
 
-        // POST: Favourites/Edit/5
+        // POST: Words/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,UserID,UserProductID")] Favourite favourite)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Keyword keyword)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(favourite).State = EntityState.Modified;
+                db.Entry(keyword).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favourite.UserProductID);
-            return View(favourite);
+            return View(keyword);
         }
 
-        // GET: Favourites/Delete/5
+        // GET: Words/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Favourite favourite = db.Favourites.Find(id);
-            if (favourite == null)
+            Keyword keyword = db.Keywords.Find(id);
+            if (keyword == null)
             {
                 return HttpNotFound();
             }
-            return View(favourite);
+            return View(keyword);
         }
 
-        // POST: Favourites/Delete/5
+        // POST: Words/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Favourite favourite = db.Favourites.Find(id);
-            db.Favourites.Remove(favourite);
+            Keyword keyword = db.Keywords.Find(id);
+            db.Keywords.Remove(keyword);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

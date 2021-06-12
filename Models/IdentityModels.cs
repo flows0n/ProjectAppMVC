@@ -18,7 +18,7 @@ namespace ProjectApp.Models
             return userIdentity;
         }
         public virtual ICollection <UserProduct> UserProducts { get; set; }
-        public virtual ICollection <Favourite> Favourites { get; set; }
+        public virtual ICollection <Favorite> Favorites { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -36,13 +36,13 @@ namespace ProjectApp.Models
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Word> Words { get; set; }
+        public DbSet<Keyword> Keywords { get; set; }
 
-        public DbSet<WordCategory> WordCategories { get; set; }
+        public DbSet<KeywordCategory> KeywordCategories { get; set; }
 
         public DbSet<UserProduct> UserProducts { get; set; }
 
-        public DbSet <Favourite> Favourites { get; set; }
+        public DbSet <Favorite> Favorites { get; set; }
 
     }
 

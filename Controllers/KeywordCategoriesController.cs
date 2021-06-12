@@ -10,107 +10,116 @@ using ProjectApp.Models;
 
 namespace ProjectApp.Controllers
 {
-    public class WordsController : Controller
+    public class KeywordCategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Words
+        // GET: WordCategories
         public ActionResult Index()
         {
-            return View(db.Words.ToList());
+            var keywordCategories = db.KeywordCategories.Include(w => w.Category).Include(w => w.Keyword);
+            return View(keywordCategories.ToList());
         }
 
-        // GET: Words/Details/5
+        // GET: WordCategories/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Word word = db.Words.Find(id);
-            if (word == null)
+            KeywordCategory keywordCategory = db.KeywordCategories.Find(id);
+            if (keywordCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(word);
+            return View(keywordCategory);
         }
 
-        // GET: Words/Create
+        // GET: WordCategories/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.WordID = new SelectList(db.Keywords, "ID", "Name");
             return View();
         }
 
-        // POST: Words/Create
+        // POST: WordCategories/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Word word)
+        public ActionResult Create([Bind(Include = "ID,WordID,CategoryID")] KeywordCategory keywordCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Words.Add(word);
+                db.KeywordCategories.Add(keywordCategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(word);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", keywordCategory.CategoryID);
+            ViewBag.WordID = new SelectList(db.Keywords, "ID", "Name", keywordCategory.WordID);
+            return View(keywordCategory);
         }
 
-        // GET: Words/Edit/5
+        // GET: WordCategories/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Word word = db.Words.Find(id);
-            if (word == null)
+            KeywordCategory keywordCategory = db.KeywordCategories.Find(id);
+            if (keywordCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(word);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", keywordCategory.CategoryID);
+            ViewBag.WordID = new SelectList(db.Keywords, "ID", "Name", keywordCategory.WordID);
+            return View(keywordCategory);
         }
 
-        // POST: Words/Edit/5
+        // POST: WordCategories/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Word word)
+        public ActionResult Edit([Bind(Include = "ID,WordID,CategoryID")] KeywordCategory keywordCategory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(word).State = EntityState.Modified;
+                db.Entry(keywordCategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(word);
+            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", keywordCategory.CategoryID);
+            ViewBag.WordID = new SelectList(db.Keywords, "ID", "Name", keywordCategory.WordID);
+            return View(keywordCategory);
         }
 
-        // GET: Words/Delete/5
+        // GET: WordCategories/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Word word = db.Words.Find(id);
-            if (word == null)
+            KeywordCategory keywordCategory = db.KeywordCategories.Find(id);
+            if (keywordCategory == null)
             {
                 return HttpNotFound();
             }
-            return View(word);
+            return View(keywordCategory);
         }
 
-        // POST: Words/Delete/5
+        // POST: WordCategories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Word word = db.Words.Find(id);
-            db.Words.Remove(word);
+            KeywordCategory keywordCategory = db.KeywordCategories.Find(id);
+            db.KeywordCategories.Remove(keywordCategory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
