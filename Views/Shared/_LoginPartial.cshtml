@@ -16,15 +16,11 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>
-            <button type="button" class="btn btn-light">
-                @Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-            </button>
+        <li class="spaces">
+                @Html.ActionLink("Zarejestruj", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-light" })
         </li>
-        <li>
-            <button type="button" class="btn btn-dark">
-                @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
-            </button>
+        <li class="spaces">
+                @Html.ActionLink("Zaloguj", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-dark" })
         </li>
     </ul>
 }
