@@ -23,7 +23,7 @@ namespace ProjectApp.Models
         public string LastName { get; set; }
 
         public virtual ICollection <UserProduct> UserProducts { get; set; }
-        public virtual ICollection <Favourite> Favourites { get; set; }
+        public virtual ICollection <Favorite> Favorites { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -41,56 +41,13 @@ namespace ProjectApp.Models
 
         public DbSet <Product> Products { get; set; }
 
-        public DbSet <Word> Words { get; set; }
+        public DbSet<Keyword> Keywords { get; set; }
 
-        public DbSet <WordCategory> WordCategories { get; set; }
+        public DbSet<KeywordCategory> KeywordCategories { get; set; }
 
         public DbSet <UserProduct> UserProducts { get; set; }
 
-        public DbSet <Favourite> Favourites { get; set; }
-    }
-	//Klasa dodana
-	public class IdentityManager
-	{
-		public RoleManager<IdentityRole> LocalRoleManager
-		{
-			get
-			{
-				return new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-			}
-		}
-
-
-		public UserManager<ApplicationUser> LocalUserManager
-		{
-			get
-			{
-				return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-			}
-		}
-
-
-		public ApplicationUser GetUserByID(string userID)
-		{
-			ApplicationUser user = null;
-			UserManager<ApplicationUser> um = this.LocalUserManager;
-
-			user = um.FindById(userID);
-
-			return user;
-		}
-
-
-		public ApplicationUser GetUserByName(string email)
-		{
-			ApplicationUser user = null;
-			UserManager<ApplicationUser> um = this.LocalUserManager;
-
-			user = um.FindByEmail(email);
-
-			return user;
-		}
-
+        public DbSet <Favorite> Favorites { get; set; }
 
 		public bool RoleExists(string name)
 		{

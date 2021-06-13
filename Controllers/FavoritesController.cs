@@ -10,116 +10,112 @@ using ProjectApp.Models;
 
 namespace ProjectApp.Controllers
 {
-    public class WordCategoriesController : Controller
+    public class FavoritesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: WordCategories
+        // GET: Favourites
         public ActionResult Index()
         {
-            var wordCategories = db.WordCategories.Include(w => w.Category).Include(w => w.Word);
-            return View(wordCategories.ToList());
+            var favorites = db.Favorites.Include(f => f.UserProduct);
+            return View(favorites.ToList());
         }
 
-        // GET: WordCategories/Details/5
+        // GET: Favourites/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WordCategory wordCategory = db.WordCategories.Find(id);
-            if (wordCategory == null)
+            Favorite favorite = db.Favorites.Find(id);
+            if (favorite == null)
             {
                 return HttpNotFound();
             }
-            return View(wordCategory);
+            return View(favorite);
         }
 
-        // GET: WordCategories/Create
+        // GET: Favourites/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.WordID = new SelectList(db.Words, "ID", "Name");
+            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID");
             return View();
         }
 
-        // POST: WordCategories/Create
+        // POST: Favourites/Create
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,WordID,CategoryID")] WordCategory wordCategory)
+        public ActionResult Create([Bind(Include = "ID,UserID,UserProductID")] Favorite favorite)
         {
             if (ModelState.IsValid)
             {
-                db.WordCategories.Add(wordCategory);
+                db.Favorites.Add(favorite);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", wordCategory.CategoryID);
-            ViewBag.WordID = new SelectList(db.Words, "ID", "Name", wordCategory.WordID);
-            return View(wordCategory);
+            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favorite.UserProductID);
+            return View(favorite);
         }
 
-        // GET: WordCategories/Edit/5
+        // GET: Favourites/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WordCategory wordCategory = db.WordCategories.Find(id);
-            if (wordCategory == null)
+            Favorite favorite = db.Favorites.Find(id);
+            if (favorite == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", wordCategory.CategoryID);
-            ViewBag.WordID = new SelectList(db.Words, "ID", "Name", wordCategory.WordID);
-            return View(wordCategory);
+            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favorite.UserProductID);
+            return View(favorite);
         }
 
-        // POST: WordCategories/Edit/5
+        // POST: Favourites/Edit/5
         // Aby zapewnić ochronę przed atakami polegającymi na przesyłaniu dodatkowych danych, włącz określone właściwości, z którymi chcesz utworzyć powiązania.
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,WordID,CategoryID")] WordCategory wordCategory)
+        public ActionResult Edit([Bind(Include = "ID,UserID,UserProductID")] Favorite favorite)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(wordCategory).State = EntityState.Modified;
+                db.Entry(favorite).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", wordCategory.CategoryID);
-            ViewBag.WordID = new SelectList(db.Words, "ID", "Name", wordCategory.WordID);
-            return View(wordCategory);
+            ViewBag.UserProductID = new SelectList(db.UserProducts, "ID", "ID", favorite.UserProductID);
+            return View(favorite);
         }
 
-        // GET: WordCategories/Delete/5
+        // GET: Favourites/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            WordCategory wordCategory = db.WordCategories.Find(id);
-            if (wordCategory == null)
+            Favorite favorite = db.Favorites.Find(id);
+            if (favorite == null)
             {
                 return HttpNotFound();
             }
-            return View(wordCategory);
+            return View(favorite);
         }
 
-        // POST: WordCategories/Delete/5
+        // POST: Favourites/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            WordCategory wordCategory = db.WordCategories.Find(id);
-            db.WordCategories.Remove(wordCategory);
+            Favorite favorite = db.Favorites.Find(id);
+            db.Favorites.Remove(favorite);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

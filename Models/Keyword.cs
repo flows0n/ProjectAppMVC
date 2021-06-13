@@ -5,11 +5,11 @@ using System.Web;
 
 namespace ProjectApp.Models
 {
-    public class Word
+    public class Keyword
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<WordCategory> WordsCategories { get; set; }
+        public virtual ICollection<KeywordCategory> KeywordsCategories { get; set; }
 
     }
 }

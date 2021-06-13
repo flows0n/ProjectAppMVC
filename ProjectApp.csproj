@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -157,9 +160,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -169,62 +169,26 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
-    <Compile Include="Controllers\FavouritesController.cs" />
+    <Compile Include="Controllers\FavoritesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\WordCategoriesController.cs" />
-    <Compile Include="Controllers\WordsController.cs" />
+    <Compile Include="Controllers\UserProductsController.cs" />
+    <Compile Include="Controllers\KeywordCategoriesController.cs" />
+    <Compile Include="Controllers\KeywordsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105251445389_initial.cs" />
-    <Compile Include="Migrations\202105251445389_initial.Designer.cs">
-      <DependentUpon>202105251445389_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105251643486_addwordtable.cs" />
-    <Compile Include="Migrations\202105251643486_addwordtable.Designer.cs">
-      <DependentUpon>202105251643486_addwordtable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105251647460_1.cs" />
-    <Compile Include="Migrations\202105251647460_1.Designer.cs">
-      <DependentUpon>202105251647460_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105260704516_2.cs" />
-    <Compile Include="Migrations\202105260704516_2.Designer.cs">
-      <DependentUpon>202105260704516_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105261901512_3.cs" />
-    <Compile Include="Migrations\202105261901512_3.Designer.cs">
-      <DependentUpon>202105261901512_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106120611187_roles.cs" />
-    <Compile Include="Migrations\202106120611187_roles.Designer.cs">
-      <DependentUpon>202106120611187_roles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106120618357_user.cs" />
-    <Compile Include="Migrations\202106120618357_user.Designer.cs">
-      <DependentUpon>202106120618357_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106120645113_image_chanegs.cs" />
-    <Compile Include="Migrations\202106120645113_image_chanegs.Designer.cs">
-      <DependentUpon>202106120645113_image_chanegs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106120659400_image_chanegs2.cs" />
-    <Compile Include="Migrations\202106120659400_image_chanegs2.Designer.cs">
-      <DependentUpon>202106120659400_image_chanegs2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Favourite.cs" />
+    <Compile Include="Models\Favorite.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UserProduct.cs" />
-    <Compile Include="Models\Word.cs" />
-    <Compile Include="Models\WordCategory.cs" />
+    <Compile Include="Models\Keyword.cs" />
+    <Compile Include="Models\KeywordCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -310,55 +274,31 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Favourites\Create.cshtml" />
-    <Content Include="Views\Favourites\Delete.cshtml" />
-    <Content Include="Views\Favourites\Details.cshtml" />
-    <Content Include="Views\Favourites\Edit.cshtml" />
-    <Content Include="Views\Favourites\Index.cshtml" />
-    <Content Include="Views\Words\Create.cshtml" />
-    <Content Include="Views\Words\Delete.cshtml" />
-    <Content Include="Views\Words\Details.cshtml" />
-    <Content Include="Views\Words\Edit.cshtml" />
-    <Content Include="Views\Words\Index.cshtml" />
-    <Content Include="Views\WordCategories\Create.cshtml" />
-    <Content Include="Views\WordCategories\Delete.cshtml" />
-    <Content Include="Views\WordCategories\Details.cshtml" />
-    <Content Include="Views\WordCategories\Edit.cshtml" />
-    <Content Include="Views\WordCategories\Index.cshtml" />
+    <Content Include="Views\Favorites\Create.cshtml" />
+    <Content Include="Views\Favorites\Delete.cshtml" />
+    <Content Include="Views\Favorites\Details.cshtml" />
+    <Content Include="Views\Favorites\Edit.cshtml" />
+    <Content Include="Views\Favorites\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105251445389_initial.resx">
-      <DependentUpon>202105251445389_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105251643486_addwordtable.resx">
-      <DependentUpon>202105251643486_addwordtable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105251647460_1.resx">
-      <DependentUpon>202105251647460_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105260704516_2.resx">
-      <DependentUpon>202105260704516_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105261901512_3.resx">
-      <DependentUpon>202105261901512_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106120611187_roles.resx">
-      <DependentUpon>202106120611187_roles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106120618357_user.resx">
-      <DependentUpon>202106120618357_user.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106120645113_image_chanegs.resx">
-      <DependentUpon>202106120645113_image_chanegs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106120659400_image_chanegs2.resx">
-      <DependentUpon>202106120659400_image_chanegs2.cs</DependentUpon>
-    </EmbeddedResource>
+    <Content Include="Views\UserProducts\Create.cshtml" />
+    <Content Include="Views\UserProducts\Delete.cshtml" />
+    <Content Include="Views\UserProducts\Details.cshtml" />
+    <Content Include="Views\UserProducts\Edit.cshtml" />
+    <Content Include="Views\UserProducts\Index.cshtml" />
+    <Content Include="Views\Keywords\Create.cshtml" />
+    <Content Include="Views\Keywords\Delete.cshtml" />
+    <Content Include="Views\Keywords\Details.cshtml" />
+    <Content Include="Views\Keywords\Edit.cshtml" />
+    <Content Include="Views\Keywords\Index.cshtml" />
+    <Content Include="Views\KeywordCategories\Create.cshtml" />
+    <Content Include="Views\KeywordCategories\Delete.cshtml" />
+    <Content Include="Views\KeywordCategories\Details.cshtml" />
+    <Content Include="Views\KeywordCategories\Edit.cshtml" />
+    <Content Include="Views\KeywordCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -420,7 +360,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Ten projekt zawiera odwołania do pakietów NuGet, których nie ma na tym komputerze. Użyj przywracania pakietów NuGet, aby je pobrać. Aby uzyskać więcej informacji, zobacz http://go.microsoft.com/fwlink/?LinkID=322105. Brakujący plik: {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
