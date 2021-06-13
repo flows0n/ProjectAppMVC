@@ -173,11 +173,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\UserProductsController.cs" />
     <Compile Include="Controllers\KeywordCategoriesController.cs" />
     <Compile Include="Controllers\KeywordsController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106131554380_1.cs" />
+    <Compile Include="Migrations\202106131554380_1.Designer.cs">
+      <DependentUpon>202106131554380_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -329,6 +333,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Roles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202106131554380_1.resx">
+      <DependentUpon>202106131554380_1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
