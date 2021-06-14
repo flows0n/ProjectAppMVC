@@ -8,18 +8,19 @@
     <p class="lead">Jedyny taki serwis do ogłoszeń lokalnych</p>
 </div>
 
-<div class="d-flex flex-column align-items-center" >
+<div class="d-flex flex-column align-items-center">
     <h3>Szukasz jakiegoś produktu?</h3>
-    @using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+    @using (Html.BeginForm("SearchProduct", "Products", FormMethod.Get))
     {
-    <form>
-        <div class="d-flex flex-column align-items-center">
-            @Html.TextBox("searchName", null, new { @class = "form-control mb-2" })
-            <button class="btn btn-primary mb-2 " type="submit">Wyszukaj</button>
-         </div>
-    </form>
+        <form>
+            <div class="d-flex flex-column align-items-center">
+                @Html.TextBox("searchPhrase", null, new { @class = "form-control mb-2" })
+                <button class="btn btn-primary mb-2 " type="submit">Wyszukaj</button>
+            </div>
+        </form>
     }
     <p>Wyszukaj interesującą cię rzecz spośród tysięcy ogłoszeń!</p>
+    <p>(Wyszukiwanie bazuje na nazwach oraz opisach)</p>
 </div>
 
         <div class="text-center">

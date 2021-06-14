@@ -21,6 +21,24 @@ namespace ProjectApp.Controllers
             return View(products.ToList());
         }
 
+
+        // GET: SearchProduct
+        public ActionResult SearchProduct(string searchPhrase)
+        {
+            ViewBag.Phrase = searchPhrase;
+            if (!String.IsNullOrEmpty(searchPhrase))
+            {
+                var products = db.Products.Include(p => p.Category);
+
+                if (!String.IsNullOrEmpty(searchPhrase))
+                {
+                    products = db.Products.Where(p => p.Name.Contains(searchPhrase) || p.Description.Contains(searchPhrase));
+                }
+                return View(products.ToList());
+            }
+            return View(db.Products.ToList());
+        }
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
