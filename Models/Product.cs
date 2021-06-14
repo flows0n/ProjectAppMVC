@@ -10,8 +10,8 @@ namespace ProjectApp.Models
     {
         public enum ConditionName
         {
-            New,
-            Used
+            Nowy,
+            Używany
         }
 
         public int ID { get; set; }
@@ -32,6 +32,7 @@ namespace ProjectApp.Models
         public int VisitCount { get; set; }
         [Display(Name = "Kategoria")]
         public int CategoryID { get; set; }
+        [Display(Name = "Kategoria")]
         public virtual Category Category { get; set; }
     }
 }
