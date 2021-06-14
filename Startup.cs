@@ -39,7 +39,7 @@ namespace ProjectApp
                 user.UserName = "admin@admin.com";
                 user.Email = "admin@admin.com";
 
-                string userPWD = "admin";
+                string userPWD = "!12Admin";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
