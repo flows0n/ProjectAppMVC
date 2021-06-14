@@ -27,7 +27,7 @@ namespace ProjectApp.Models
         [Display(Name = "Cena")]
         public int Price { get; set; }
         [Display(Name = "Liczba polubionych")]
-        public int FavouriteCount { get; set; }
+        public int FavoriteCount { get; set; }
         [Display(Name = "Liczba odwiedzin")]
         public int VisitCount { get; set; }
         [Display(Name = "Kategoria")]

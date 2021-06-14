@@ -179,10 +179,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106131554380_1.cs" />
-    <Compile Include="Migrations\202106131554380_1.Designer.cs">
-      <DependentUpon>202106131554380_1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -288,11 +284,6 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\UserProducts\Create.cshtml" />
-    <Content Include="Views\UserProducts\Delete.cshtml" />
-    <Content Include="Views\UserProducts\Details.cshtml" />
-    <Content Include="Views\UserProducts\Edit.cshtml" />
-    <Content Include="Views\UserProducts\Index.cshtml" />
     <Content Include="Views\Keywords\Create.cshtml" />
     <Content Include="Views\Keywords\Delete.cshtml" />
     <Content Include="Views\Keywords\Details.cshtml" />
@@ -333,11 +324,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Roles\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106131554380_1.resx">
-      <DependentUpon>202106131554380_1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
