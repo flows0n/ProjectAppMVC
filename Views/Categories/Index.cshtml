@@ -4,37 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@if (User.IsInRole("Admin"))
+{
+    <h2 class="text-center mt-3 mb-3">Zarządzaj listą kategorii:</h2>
+    <div class="">
+        @Html.ActionLink("Dodaj nową kategorie", "Create", "Categories", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<div class="align-content-center m-auto">
-    @foreach (var item in Model)
-    {
-        <button type="button" class="btn btn-primary btn-lg">@Html.DisplayFor(modelItem => item.Name)</button>
-    }
-</div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>Opcje dodatkowe</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info" }) |
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
+    <h2 class="text-center mt-3 mb-3">Wybierz kategorię która Cię interesuje:</h2>
 
-</table>
+    <div class="align-content-center m-auto">
+        @foreach (var item in Model)
+        {
+            <button type="button" class="btn btn-primary btn-lg">@Html.DisplayFor(modelItem => item.Name)</button>
+        }
+    </div>
+}
+
