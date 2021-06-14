@@ -32,5 +32,10 @@ textarea {
 }
 
 .spaces{
-    margin-left:5px;
+    margin:5px;
+}
+
+.form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
