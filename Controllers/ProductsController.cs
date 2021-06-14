@@ -48,7 +48,7 @@ namespace ProjectApp.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavouriteCount,VisitCount,CategoryID")] Product product)
+        public ActionResult Create([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavoriteCount,VisitCount,CategoryID")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace ProjectApp.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavouriteCount,VisitCount,CategoryID")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavoriteCount,VisitCount,CategoryID")] Product product)
         {
             if (ModelState.IsValid)
             {
