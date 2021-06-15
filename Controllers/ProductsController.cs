@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProjectApp.Models;
 
 namespace ProjectApp.Controllers
@@ -21,6 +22,14 @@ namespace ProjectApp.Controllers
             return View(products.ToList());
         }
 
+        [Authorize]
+        public ActionResult OwnProducts()
+        {
+            //var products = db.Products.Include(p => p.Category);
+            string userID = User.Identity.GetUserId();
+            var products = db.Products.Where(p => p.User.Id.Equals(userID));
+            return View("~/Views/Products/Index.cshtml", products.ToList());
+        }
 
         // GET: SearchProduct
         public ActionResult SearchProduct(string searchPhrase)
@@ -55,6 +64,7 @@ namespace ProjectApp.Controllers
         }
 
         // GET: Products/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
@@ -66,10 +76,15 @@ namespace ProjectApp.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavoriteCount,VisitCount,CategoryID")] Product product)
+        [Authorize]
+        public ActionResult Create([Bind(Include = "ID,Name,Image,Description,Condition,Price,CategoryID")] Product product)
         {
             if (ModelState.IsValid)
             {
+                product.AddDate = DateTime.Now;
+                product.User = db.Users.Find(User.Identity.GetUserId());
+                product.FavoriteCount = 0;
+                product.VisitCount = 0;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -80,6 +95,7 @@ namespace ProjectApp.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -100,7 +116,8 @@ namespace ProjectApp.Controllers
         // Aby uzyskać więcej szczegółów, zobacz https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,FavoriteCount,VisitCount,CategoryID")] Product product)
+        [Authorize]
+        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,CategoryID")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -113,6 +130,7 @@ namespace ProjectApp.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -130,6 +148,7 @@ namespace ProjectApp.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);

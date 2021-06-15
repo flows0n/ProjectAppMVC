@@ -30,9 +30,12 @@ namespace ProjectApp.Models
         public int FavoriteCount { get; set; }
         [Display(Name = "Liczba odwiedzin")]
         public int VisitCount { get; set; }
-        [Display(Name = "Kategoria")]
         public int CategoryID { get; set; }
         [Display(Name = "Kategoria")]
         public virtual Category Category { get; set; }
+        [Display(Name = "Data Utworzenia")]
+        [DataType(DataType.Date)]
+        public DateTime AddDate { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
