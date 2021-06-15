@@ -18,6 +18,7 @@
             @if (User.IsInRole("Admin"))
             {
                 <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="@Url.Action("Index", "Products")">Ogłoszenia</a>
                 <a class="dropdown-item" href="@Url.Action("Index", "Categories")">Kategorie</a>
                 <a class="dropdown-item" href="@Url.Action("Index", "Keywords")">Słowa kluczowe</a>
                 <a class="dropdown-item" href="#">Wiadomości</a>

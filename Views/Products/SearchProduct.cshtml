@@ -40,7 +40,7 @@ else
         <th>
             @Html.DisplayNameFor(model => model.VisitCount)
         </th>
-        <th></th>
+        <th>Opcje dodatkowe</th>
     </tr>
         @foreach (var item in Model)
         {
@@ -70,9 +70,17 @@ else
                     @Html.DisplayFor(modelItem => item.VisitCount)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                        @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                        @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                    }
                 </td>
             </tr>
         } 

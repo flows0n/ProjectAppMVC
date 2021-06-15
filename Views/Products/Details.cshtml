@@ -78,5 +78,6 @@
 </div>
 <p>
     @*Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @*Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("< Powrót", null, null, null, htmlAttributes: new { href = Request.UrlReferrer, @class = "btn btn-primary" })
 </p>
