@@ -13,8 +13,7 @@ namespace ProjectApp.Controllers
         public ActionResult Index()
         {
             var query = (from p in db.Products
-                         join up in db.UserProducts on p.ID equals up.ProductID
-                         orderby up.AddDate descending
+                         orderby p.AddDate descending
                          select p).Take(4);
             return View(query.ToList());
         }

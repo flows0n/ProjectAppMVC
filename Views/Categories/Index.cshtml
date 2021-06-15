@@ -39,16 +39,15 @@
 else
 {
     <h2 class="text-center mt-3 mb-3">Wybierz kategorię która Cię interesuje:</h2>
-
-    <div class="align-content-center m-auto">
+    <div class="text-center mt-5 mb-5">
         @foreach (var item in Model)
         {
-            <button type="button" class="btn btn-primary btn-lg">@Html.DisplayFor(modelItem => item.Name)</button>
+            @Html.ActionLink(item.Name, "GetFromCategories", "Products", new { name = item.Name }, htmlAttributes: new { @class = "btn btn-primary btn-lg m-1" })
         }
-    </div>
+        </div>
 }
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#table_id').DataTable();
-            });
-        </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>

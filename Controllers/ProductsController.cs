@@ -31,7 +31,7 @@ namespace ProjectApp.Controllers
             return View("~/Views/Products/Index.cshtml", products.ToList());
         }
 
-        // GET: SearchProduct
+        // GET: SearchProducts
         public ActionResult SearchProduct(string searchPhrase)
         {
             ViewBag.Phrase = searchPhrase;
@@ -47,6 +47,19 @@ namespace ProjectApp.Controllers
             }
             return View(db.Products.ToList());
         }
+
+        // GET: GetFromCategories
+
+        public ActionResult GetFromCategories(string name)
+        {
+            ViewBag.Category = name;
+            var products = (from p in db.Products
+                            join ct in db.Categories on p.CategoryID equals ct.ID
+                            where ct.Name == name
+                            select p);
+            return View(products.ToList());
+        }
+
 
         // GET: Products/Details/5
         public ActionResult Details(int? id)
