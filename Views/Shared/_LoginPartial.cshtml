@@ -10,13 +10,17 @@
         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>Witaj, @User.Identity.GetUserName()!</strong></a>
         <div class="dropdown-menu" data-bs-popper="none">
             <a class="dropdown-item" href="@Url.Action("Index", "Manage")">Profil</a>
-            <a class="dropdown-item" href="@Url.Action("OwnProducts", "Products")">Moje Ogłoszenia</a>
+            @if (User.IsInRole("User"))
+            {
+                <a class="dropdown-item" href="@Url.Action("OwnProducts", "Products")">Moje Ogłoszenia</a>
+                <a class="dropdown-item" href="#">Lista ulubionych</a>
+            }
             @if (User.IsInRole("Admin"))
             {
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="@Url.Action("Index","Categories")">Kategorie</a>
-                <a class="dropdown-item" href="@Url.Action("Index","Keywords")">Słowa kluczowe</a>
-
+                <a class="dropdown-item" href="@Url.Action("Index", "Categories")">Kategorie</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Keywords")">Słowa kluczowe</a>
+                <a class="dropdown-item" href="#">Wiadomości</a>
             }
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a>
