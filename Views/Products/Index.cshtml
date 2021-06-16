@@ -4,7 +4,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="text-center mt-3 mb-3">Lista wszystkich dostępnych ogłoszeń:</h2>
+@switch (@ViewBag.Type)
+{
+    case 1:
+        <h2 class="text-center mt-3 mb-3">Twoje ogłoszenia: </h2>
+        break;
+
+    case 2:
+        if (!Model.Any())
+        {
+            <h2 class="text-center mt-3 mb-3">Nie znaleziono produktów z podaną frazą: @ViewBag.Phrase</h2>
+        }
+        else
+        { <h2 class="text-center mt-3 mb-3">Wynik wyszukiwania frazy: @ViewBag.Phrase</h2>}
+    break;
+case 3:
+    if (!Model.Any())
+    {
+        <h2 class="text-center mt-3 mb-3">Nie znaleziono produktów z kategorii: @ViewBag.Category</h2>
+    }
+    else
+    { <h2 class="text-center mt-3 mb-3">Produkty z kategorii: @ViewBag.Category</h2>}
+
+break;
+default:
+<h2 class="text-center mt-3 mb-3">Wszystkie dostępne ogłoszenia:</h2>
+break;
+}
+
+
+
+
+
 @if (!Request.IsAuthenticated)
 {
     <div class="d-flex flex-row-reverse bd-highlight mt-4">
@@ -20,72 +51,97 @@ else
         @Html.ActionLink("Dodaj nowe ogłoszenie", "Create", "Products", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg mt-4 mb-4" })
     </div>
 }
-<table id="example" class="table table-striped" style="width:100%">
-    <thead>
-        <tr class="">
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Condition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FavoriteCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VisitCount)
-            </th>
-            <th>Opcje dodatkowe</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Condition)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FavoriteCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VisitCount)
-                </td>
-                <td>
-                    @if (User.IsInRole("Admin"))
-                    {
-                        @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
-                        @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
-                        @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
 
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
-                    }
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+
+
+<div class="row justify-content-center mt-5 mb-5">
+    <div >
+        <table id="productsTable" class="table text-center">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Condition)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FavoriteCount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitCount)
+                    </th>
+                    <th>Opcje dodatkowe</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Condition)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FavoriteCount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VisitCount)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Admin") || (User.IsInRole("User") && item.User.Email.Equals(User.Identity.Name)))
+                            {
+                                @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                                @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                                @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
+
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#productsTable').DataTable({
+                "oLanguage": {
+                    "sLengthMenu": 'Pokaż <select>' +
+                        '<option value="5">5</option>' +
+                        '<option value="10">10</option>' +
+                        '<option value="15">15</option>' +
+                        '<option value="25">25</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">All</option>' +
+                        '</select> elementów',
+                    "sSearch": "Wyszukaj: ",
+                    "sInfoEmpty": "Brak elementów",
+                }
+
+            });
+        });
+    </script>
+}

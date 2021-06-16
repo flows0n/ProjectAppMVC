@@ -27,6 +27,8 @@ namespace ProjectApp.Controllers
         public ActionResult OwnProducts()
         {
             //var products = db.Products.Include(p => p.Category);
+            ViewBag.User = "user";
+            ViewBag.Type = 1;
             string userID = User.Identity.GetUserId();
             var products = db.Products.Where(p => p.User.Id.Equals(userID));
             return View("~/Views/Products/Index.cshtml", products.ToList());
@@ -36,6 +38,7 @@ namespace ProjectApp.Controllers
         public ActionResult SearchProduct(string searchPhrase)
         {
             ViewBag.Phrase = searchPhrase;
+            ViewBag.Type = 2;
             if (!String.IsNullOrEmpty(searchPhrase))
             {
                 var products = db.Products.Include(p => p.Category);
@@ -44,21 +47,22 @@ namespace ProjectApp.Controllers
                 {
                     products = db.Products.Where(p => p.Name.Contains(searchPhrase) || p.Description.Contains(searchPhrase));
                 }
-                return View(products.ToList());
+                return View("~/Views/Products/Index.cshtml",products.ToList());
             }
-            return View(db.Products.ToList());
+            return View("~/Views/Products/Index.cshtml",db.Products.ToList());
         }
 
         // GET: GetFromCategories
 
         public ActionResult GetFromCategories(string name)
         {
+            ViewBag.Type = 3;
             ViewBag.Category = name;
             var products = (from p in db.Products
                             join ct in db.Categories on p.CategoryID equals ct.ID
                             where ct.Name == name
                             select p);
-            return View(products.ToList());
+            return View("~/Views/Products/Index.cshtml",products.ToList());
         }
 
 

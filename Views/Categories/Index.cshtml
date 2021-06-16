@@ -8,33 +8,37 @@
 {
     <h2 class="text-center mt-3 mb-3">Lista wszystkich kategorii:</h2>
     <div class="d-flex flex-row-reverse bd-highlight">
-        @Html.ActionLink("Dodaj nową kategorie", "Create", "Categories", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg m-4" })
+        @Html.ActionLink("Dodaj nową kategorie", "Create", "Categories", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg mt-4 mb-4" })
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>Opcje dodatkowe</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="row justify-content-center">
+        <div class="col-6 ">
+        <table id="categoryTable" class="table text-center">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info" }) |
-                        @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger" })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>Opcje dodatkowe</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                            @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger m-1" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+     </div>
+
 }
 else
 {
@@ -44,10 +48,27 @@ else
         {
             @Html.ActionLink(item.Name, "GetFromCategories", "Products", new { name = item.Name }, htmlAttributes: new { @class = "btn btn-primary btn-lg m-1" })
         }
-        </div>
+    </div>
 }
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#table_id').DataTable();
-    });
-</script>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#categoryTable').DataTable({
+                "oLanguage": {
+                    "sLengthMenu": 'Pokaż <select>' +
+                        '<option value="5">5</option>' +
+                        '<option value="10">10</option>' +
+                        '<option value="15">15</option>' +
+                        '<option value="25">25</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="-1">All</option>' +
+                        '</select> elementów',
+                    "sSearch": "Wyszukaj: ",
+                    "sInfoEmpty": "Brak elementów",
+                }
+
+            });
+        });
+    </script>
+}
