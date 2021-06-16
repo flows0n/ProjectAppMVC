@@ -48,9 +48,13 @@ namespace ProjectApp.Models
 		public DbSet<UserProduct> UserProducts { get; set; }
 
 		public DbSet<Favorite> Favorites { get; set; }
-	}
-		//Klasa dodana
-		public class IdentityManager
+
+		public DbSet<UploadedFile> UploadedFiles { get; set; }
+
+        public System.Data.Entity.DbSet<ProjectApp.Models.AdminMessage> AdminMessages { get; set; }
+    }
+    //Klasa dodana
+    public class IdentityManager
 		{
 			public RoleManager<IdentityRole> LocalRoleManager
 			{

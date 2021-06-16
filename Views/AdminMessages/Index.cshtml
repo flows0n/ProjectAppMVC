@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProjectApp.Models.AdminMessage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+    <script>
+        function ShowAlert() {
+            alert("Message changed successfully");
+        }
+    </script>
+
+}
+
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.message)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                @Ajax.ActionLink("Display", "Display", new { id = item.ID }, new AjaxOptions { HttpMethod = "Post" }, new { OnClick = "ShowAlert()" })
+            </td>
+        </tr>
+    }
+
+</table>
