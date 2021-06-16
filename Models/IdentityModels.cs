@@ -50,9 +50,11 @@ namespace ProjectApp.Models
 		public DbSet<Favorite> Favorites { get; set; }
 
 		public DbSet<UploadedFile> UploadedFiles { get; set; }
-	}
-		//Klasa dodana
-		public class IdentityManager
+
+        public System.Data.Entity.DbSet<ProjectApp.Models.AdminMessage> AdminMessages { get; set; }
+    }
+    //Klasa dodana
+    public class IdentityManager
 		{
 			public RoleManager<IdentityRole> LocalRoleManager
 			{
