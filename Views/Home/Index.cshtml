@@ -35,20 +35,35 @@
     {
         <div class="col-sm-3 mt-3">
             <div class="card">
-                <h3 class="card-header">@Html.DisplayFor(modelItem => item.Name)</h3>
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="150" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
+                <h3 class="card-header text-center">@Html.DisplayFor(modelItem => item.Name)</h3>
+                <image src=@Html.DisplayFor(modelItem => item.Image)  class="m-2"/>
                 <div class="card-body">
+                    <h7>Opis produktu:</h7>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <a href="@Url.Action("Details", "Products", new { id = item.ID })" class="card-link">Zobacz wiecej...</a>
+                    <a href="@Url.Action("Details", "Products", new { id = item.ID })" class="card-link">Szczegóły...</a>
                 </div>
                 <div class="card-footer text-sm-center">
-                    2 days ago
+                    Data dodania: @Html.DisplayFor(modelItem => item.AddDate)
                 </div>
             </div>
         </div>
     }
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function truncateText(selector, maxLength) {
+            var element = document.querySelector(selector),
+                truncated = element.innerText;
+
+            if (truncated.length > maxLength) {
+                truncated = truncated.substr(0, maxLength) + '...';
+            }
+            return truncated;
+        }
+
+        document.querySelector('.card-text').innerText = truncateText('.card-text', 50);
+
+    </script>
+    }
 

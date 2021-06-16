@@ -39,3 +39,7 @@ textarea {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#productsTable .td_string{
+    width: 18%;
+}
