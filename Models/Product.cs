@@ -18,14 +18,15 @@ namespace ProjectApp.Models
         [Display(Name = "Nazwa")]
         public string Name { get; set; }
         [Display(Name = "Zdjęcie")]
-        public byte[] Image { get; set; }
+        [DataType(DataType.ImageUrl)]
+        public string Image { get; set; }
         [Display(Name = "Opis")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
         [Display(Name = "Stan produktu")]
         public ConditionName? Condition { get; set; }
-        [Display(Name = "Cena")]
-        public int Price { get; set; }
+        [Display(Name = "Cena [zł]")]
+        public float Price { get; set; }
         [Display(Name = "Liczba polubionych")]
         public int FavoriteCount { get; set; }
         [Display(Name = "Liczba odwiedzin")]

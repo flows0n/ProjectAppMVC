@@ -38,10 +38,10 @@ break;
 
 @if (!Request.IsAuthenticated)
 {
-    <div class="d-flex flex-row-reverse bd-highlight mt-4">
+    <div class="d-flex flex-row-reverse bd-highlight mt-5">
         @Html.ActionLink("Dodaj nowe ogłoszenie", "Create", "Products", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg disabled" })
     </div>
-    <div class="d-flex flex-row-reverse bd-highlight mb-4">
+    <div class="d-flex flex-row-reverse bd-highlight mb-5">
         Aby móc dodać ogłosznenie, zaloguj się!
     </div>
 }
@@ -54,9 +54,8 @@ else
 
 
 
-<div class="row justify-content-center mt-5 mb-5">
-    <div >
-        <table id="productsTable" class="table text-center">
+<div class="text-wrap text-break ">
+        <table id="productsTable" class="table text-center" >
             <thead>
                 <tr>
                     <th>
@@ -84,10 +83,10 @@ else
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td class="td_string">
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
-                        <td>
+                        <td class="td_string">
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
@@ -102,7 +101,7 @@ else
                         <td>
                             @Html.DisplayFor(modelItem => item.VisitCount)
                         </td>
-                        <td>
+                        <td class="td_string">
                             @if (User.IsInRole("Admin") || (User.IsInRole("User") && item.User.Email.Equals(User.Identity.Name)))
                             {
                                 @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
@@ -120,13 +119,13 @@ else
                 }
             </tbody>
         </table>
-    </div>
 </div>
 
 
 
 @section scripts{
     <script type="text/javascript">
+
         $(document).ready(function () {
             $('#productsTable').DataTable({
                 "oLanguage": {

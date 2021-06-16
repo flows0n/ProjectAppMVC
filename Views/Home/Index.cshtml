@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjectApp.Models.Product>
+﻿@model dynamic
 
 @{
     ViewBag.Title = "Home";
@@ -31,24 +31,58 @@
 </div>
 
 <div class="row">
-    @foreach (var item in Model)
+    @foreach (dynamic item in Model.data1)
     {
         <div class="col-sm-3 mt-3">
             <div class="card">
-                <h3 class="card-header">@Html.DisplayFor(modelItem => item.Name)</h3>
-                <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="150" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-                    <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-                </svg>
+                <h3 class="card-header text-center">@item.Name</h3>
+                <image src=@item.Image class="m-2" />
                 <div class="card-body">
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <a href="@Url.Action("Details", "Products", new { id = item.ID })" class="card-link">Zobacz wiecej...</a>
+                    <h7>Opis produktu:</h7>
+                    <p class="card-text">@item.Description</p>
+                    <a href="@Url.Action("Details", "Products", new { id = item.ID })" class="card-link">Szczegóły...</a>
                 </div>
                 <div class="card-footer text-sm-center">
-                    2 days ago
+                    Data dodania:<br /> @item.AddDate
                 </div>
             </div>
         </div>
     }
 </div>
+
+<hr/>
+
+<div class="row mt-5">
+    @foreach (dynamic item in Model.data2)
+    {
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p class="mb-0">@item.message</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                Admin
+            </figcaption>
+        </figure>
+    }
+</div>
+
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+        function truncateText(selector, maxLength) {
+            var element = document.querySelector(selector),
+                truncated = element.innerText;
+
+            if (truncated.length > maxLength) {
+                truncated = truncated.substr(0, maxLength) + '...';
+            }
+            return truncated;
+        }
+
+        document.querySelector('.card-text').innerText = truncateText('.card-text', 50);
+
+    </script>
+}
 
