@@ -51,7 +51,7 @@ namespace ProjectApp.Models
 
 		public DbSet<UploadedFile> UploadedFiles { get; set; }
 
-        public System.Data.Entity.DbSet<ProjectApp.Models.AdminMessage> AdminMessages { get; set; }
+        public DbSet<AdminMessage> AdminMessages { get; set; }
     }
     //Klasa dodana
     public class IdentityManager
