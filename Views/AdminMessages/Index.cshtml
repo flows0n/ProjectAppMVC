@@ -9,7 +9,7 @@
 
     <script>
         function ShowAlert() {
-            alert("Message changed successfully");
+            alert("Wiadomość ustawiona na stronie głównej!");
         }
     </script>
 
@@ -17,32 +17,36 @@
 
 
 
-<h2>Index</h2>
+<h2 class="text-center mt-3 mb-3">Wiadomości</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.message)
-        </th>
-        <th></th>
-    </tr>
+<div class="d-flex flex-row-reverse bd-highlight">
+    @Html.ActionLink("Dodaj nową wiadomość", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary btn-lg mt-4 mb-4" })
+</div>
+<div class="text-wrap text-break ">
+    <div class="row justify-content-center">
+        <div class="col-8 ">
+            <table class="table text-center">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.message)
+                    </th>
+                    <th>Możliwe opcje</th>
+                </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.message)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                @Ajax.ActionLink("Display", "Display", new { id = item.ID }, new AjaxOptions { HttpMethod = "Post" }, new { OnClick = "ShowAlert()" })
-            </td>
-        </tr>
-    }
-
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.message)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                            @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
+                            @Ajax.ActionLink("Ustaw na stronie głównej", "Display", new { id = item.ID }, new AjaxOptions { HttpMethod = "Post" }, new { OnClick = "ShowAlert()" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div> 
+ </div>

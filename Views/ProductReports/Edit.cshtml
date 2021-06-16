@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center mt-3 mb-3">Edycja</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ProductReport</h4>
+        <h4>Edytuj zgłoszenie:</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -35,15 +35,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("< Powrót", null, null, null, htmlAttributes: new { href = Request.UrlReferrer, @class = "btn btn-primary m-2" })
+                <button type="submit" class="btn btn-success m-2">Zapisz</button>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("< Powrót", null, null, null, htmlAttributes: new { href = Request.UrlReferrer, @class = "btn btn-primary" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

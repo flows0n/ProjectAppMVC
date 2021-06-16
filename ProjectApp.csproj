@@ -242,7 +242,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -268,7 +267,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
@@ -276,24 +274,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Keywords\Create.cshtml" />
-    <Content Include="Views\Keywords\Delete.cshtml" />
-    <Content Include="Views\Keywords\Details.cshtml" />
-    <Content Include="Views\Keywords\Edit.cshtml" />
-    <Content Include="Views\Keywords\Index.cshtml" />
-    <Content Include="Views\KeywordCategories\Create.cshtml" />
-    <Content Include="Views\KeywordCategories\Delete.cshtml" />
-    <Content Include="Views\KeywordCategories\Details.cshtml" />
-    <Content Include="Views\KeywordCategories\Edit.cshtml" />
-    <Content Include="Views\KeywordCategories\Index.cshtml" />
-    <Content Include="Views\UploadedFiles\Create.cshtml" />
-    <Content Include="Views\UploadedFiles\Delete.cshtml" />
-    <Content Include="Views\UploadedFiles\Details.cshtml" />
-    <Content Include="Views\UploadedFiles\Edit.cshtml" />
-    <Content Include="Views\UploadedFiles\Index.cshtml" />
     <Content Include="Views\AdminMessages\Create.cshtml" />
     <Content Include="Views\AdminMessages\Delete.cshtml" />
-    <Content Include="Views\AdminMessages\Details.cshtml" />
     <Content Include="Views\AdminMessages\Edit.cshtml" />
     <Content Include="Views\AdminMessages\Index.cshtml" />
     <Content Include="Views\ProductReports\Create.cshtml" />
@@ -331,7 +313,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Roles\" />
-    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

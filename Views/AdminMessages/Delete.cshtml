@@ -4,11 +4,11 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center mt-3 mb-3">Usuwanie</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>AdminMessage</h4>
+    <h3>Czy na pewno chcesz usunąć tą wiadomość?</h3>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -21,12 +21,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions">
+            @Html.ActionLink("< Powrót", null, null, null, htmlAttributes: new { href = Request.UrlReferrer, @class = "btn btn-primary m-2" })
+            <button type="submit" class="btn btn-danger m-2"> Usuń ogłoszenie </button>
         </div>
     }
 </div>

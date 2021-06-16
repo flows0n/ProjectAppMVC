@@ -4,34 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="text-center mt-3 mb-3">Zgłoczone produkty</h2>
+<div class="text-wrap text-break ">
+    <div class="row justify-content-center">
+        <div class="col-8 ">
+            <table class="table text-center">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.product.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.description)
+                    </th>
+                    <th>Opcje dodatkowe</th>
+                </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.product.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th></th>
-    </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.product.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                            @Html.ActionLink("Szczegóły produktu", "Details", "Products", new { id = item.productID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                            @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
+                        </td>
+                    </tr>
+                }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.product.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Product Details", "Details", "Products", new { id = item.productID }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+            </table>
+        </div>
+    </div> 
+</div>

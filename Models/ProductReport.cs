@@ -10,6 +10,7 @@ namespace ProjectApp.Models
     {
         public int ID { get; set; }
         [Display(Name = "Opis")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         public int productID { get; set; }
         public Product product { get; set; }
