@@ -150,7 +150,7 @@ namespace ProjectApp.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,CategoryID")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,Name,Image,Description,Condition,Price,CategoryID,AddDate")] Product product)
         {
             if (ModelState.IsValid)
             {
