@@ -293,8 +293,6 @@
     <Content Include="Views\KeywordCategories\Details.cshtml" />
     <Content Include="Views\KeywordCategories\Edit.cshtml" />
     <Content Include="Views\KeywordCategories\Index.cshtml" />
-    <Content Include="Views\Products\SearchProduct.cshtml" />
-    <Content Include="Views\Products\GetFromCategories.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
