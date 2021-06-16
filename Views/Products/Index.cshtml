@@ -102,13 +102,14 @@ else
                             @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
                             @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
 
-                        }
-                        else
-                        {
-                            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
-                        }
-                    </td>
-                </tr>
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                                @Html.ActionLink("Zgłoś", "Create", "ProductReports", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger m-1" })
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
