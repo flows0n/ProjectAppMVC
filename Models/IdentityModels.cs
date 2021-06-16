@@ -22,8 +22,6 @@ namespace ProjectApp.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public virtual ICollection <UserProduct> UserProducts { get; set; }
-        public virtual ICollection <Favorite> Favorites { get; set; }
     }
 
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -40,16 +38,6 @@ namespace ProjectApp.Models
 		public DbSet<Category> Categories { get; set; }
 
 		public DbSet<Product> Products { get; set; }
-
-		public DbSet<Keyword> Keywords { get; set; }
-
-		public DbSet<KeywordCategory> KeywordCategories { get; set; }
-
-		public DbSet<UserProduct> UserProducts { get; set; }
-
-		public DbSet<Favorite> Favorites { get; set; }
-
-		public DbSet<UploadedFile> UploadedFiles { get; set; }
 
         public DbSet<AdminMessage> AdminMessages { get; set; }
 

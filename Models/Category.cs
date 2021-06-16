@@ -13,6 +13,5 @@ namespace ProjectApp.Models
         public string Name { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<KeywordCategory> WordsCategories { get; set; }
     }
 }
