@@ -37,5 +37,6 @@ namespace ProjectApp.Models
         [DataType(DataType.Date)]
         public DateTime AddDate { get; set; }
         public virtual ApplicationUser User { get; set; }
+        public virtual ICollection<UploadedFile> UploadedFiles { get; set; }
     }
 }

@@ -48,6 +48,8 @@ namespace ProjectApp.Models
 		public DbSet<UserProduct> UserProducts { get; set; }
 
 		public DbSet<Favorite> Favorites { get; set; }
+
+		public DbSet<UploadedFile> UploadedFiles { get; set; }
 	}
 		//Klasa dodana
 		public class IdentityManager

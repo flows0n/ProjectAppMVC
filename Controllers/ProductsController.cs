@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -92,6 +93,21 @@ namespace ProjectApp.Controllers
         [Authorize]
         public ActionResult Create([Bind(Include = "ID,Name,Image,Description,Condition,Price,CategoryID")] Product product)
         {
+            foreach (string upload in Request.Files)
+            {
+                if (Request.Files[upload].FileName != "")
+                {
+                    string folder = Server.MapPath("~/App_Data/uploads/" + User.Identity.GetUserId() + "/");
+                    if (!Directory.Exists(folder))
+                    {
+                        Directory.CreateDirectory(folder);
+                    }
+                    //string path = AppDomain.CurrentDomain.BaseDirectory + "/App_Data/uploads/";
+                    string filename = Path.GetFileName(Request.Files[upload].FileName);
+                    Request.Files[upload].SaveAs(Path.Combine(folder, filename));
+
+                }
+            }
             if (ModelState.IsValid)
             {
                 product.AddDate = DateTime.Now;

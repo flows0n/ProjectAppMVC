@@ -186,6 +186,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\UploadedFile.cs" />
+    <Compile Include="Models\UploadedFilesController.cs" />
     <Compile Include="Models\UserProduct.cs" />
     <Compile Include="Models\Keyword.cs" />
     <Compile Include="Models\KeywordCategory.cs" />
@@ -295,6 +297,11 @@
     <Content Include="Views\KeywordCategories\Index.cshtml" />
     <Content Include="Views\Products\SearchProduct.cshtml" />
     <Content Include="Views\Products\GetFromCategories.cshtml" />
+    <Content Include="Views\UploadedFiles\Create.cshtml" />
+    <Content Include="Views\UploadedFiles\Delete.cshtml" />
+    <Content Include="Views\UploadedFiles\Details.cshtml" />
+    <Content Include="Views\UploadedFiles\Edit.cshtml" />
+    <Content Include="Views\UploadedFiles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -325,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Roles\" />
+    <Folder Include="Views\Upload\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
