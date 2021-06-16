@@ -65,16 +65,13 @@ else
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Condition)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Price)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FavoriteCount)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VisitCount)
                     </th>
                     <th>Opcje dodatkowe</th>
                 </tr>
@@ -82,39 +79,36 @@ else
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="td_string">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td class="td_string">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Condition)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FavoriteCount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VisitCount)
-                        </td>
-                        <td class="td_string">
-                            @if (User.IsInRole("Admin") || (User.IsInRole("User") && item.User.Email.Equals(User.Identity.Name)))
-                            {
-                                @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
-                                @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
-                                @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
+                <tr>
+                    <td class="td_string">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="td_string">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.Category.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Condition)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td class="td_string">
+                        @if (User.IsInRole("Admin") || (User.IsInRole("User") && item.User.Email.Equals(User.Identity.Name)))
+                        {
+                            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-info m-1" })
+                            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                            @Html.ActionLink("Usuń", "Delete", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-danger  m-1" })
 
-                            }
-                            else
-                            {
-                                @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
-                            }
-                        </td>
-                    </tr>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }, htmlAttributes: new { @class = "btn btn-sm btn-warning m-1" })
+                        }
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
@@ -129,6 +123,7 @@ else
             $('#productsTable').DataTable({
                 "oLanguage": {
                     "sLengthMenu": 'Pokaż <select>' +
+                        '<option value="2">2</option>' +
                         '<option value="5">5</option>' +
                         '<option value="10">10</option>' +
                         '<option value="15">15</option>' +
