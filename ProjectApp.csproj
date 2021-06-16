@@ -173,10 +173,16 @@
     <Compile Include="Controllers\FavoritesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductReportsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\KeywordCategoriesController.cs" />
     <Compile Include="Controllers\KeywordsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +194,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductReport.cs" />
     <Compile Include="Models\UploadedFile.cs" />
     <Compile Include="Models\UploadedFilesController.cs" />
     <Compile Include="Models\UserProduct.cs" />
@@ -228,6 +235,17 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -309,6 +327,11 @@
     <Content Include="Views\AdminMessages\Details.cshtml" />
     <Content Include="Views\AdminMessages\Edit.cshtml" />
     <Content Include="Views\AdminMessages\Index.cshtml" />
+    <Content Include="Views\ProductReports\Create.cshtml" />
+    <Content Include="Views\ProductReports\Delete.cshtml" />
+    <Content Include="Views\ProductReports\Details.cshtml" />
+    <Content Include="Views\ProductReports\Edit.cshtml" />
+    <Content Include="Views\ProductReports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

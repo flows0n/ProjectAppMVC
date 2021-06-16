@@ -52,6 +52,8 @@ namespace ProjectApp.Models
 		public DbSet<UploadedFile> UploadedFiles { get; set; }
 
         public DbSet<AdminMessage> AdminMessages { get; set; }
+
+		public DbSet<ProductReport> ProductReports { get; set; }
     }
     //Klasa dodana
     public class IdentityManager
