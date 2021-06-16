@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Dynamic;
 using ProjectApp.Models;
 
 namespace ProjectApp.Controllers
@@ -10,12 +11,31 @@ namespace ProjectApp.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index()
+
+
+    public ActionResult Index()
         {
-            var query = (from p in db.Products
+            dynamic myModel = new ExpandoObject();
+            myModel.data1 = (from p in db.Products
                          orderby p.AddDate descending
-                         select p).Take(4);
-            return View(query.ToList());
+                         select p).Take(4).ToList();
+
+
+            if (HttpContext.Application["AdminMessage"] != null)
+            {
+                int id = (int)HttpContext.Application["AdminMessage"];
+                myModel.data2 = (from m in db.AdminMessages
+                              where m.ID == id
+                              select m).Take(1).ToList();
+            }
+            else
+            {
+                myModel.data2 = (from m in db.AdminMessages
+                                 orderby m.ID descending
+                                 select m).Take(1).ToList();
+            }
+            
+            return View(myModel);
         }
 
         public ActionResult About()
