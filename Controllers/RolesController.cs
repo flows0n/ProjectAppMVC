@@ -14,14 +14,5 @@ namespace ProjectApp.Controllers
         {
             return View();
         }
-        public string Create()
-        {
-            IdentityManager im = new IdentityManager();
-
-            im.CreateRole("Admin");
-            im.CreateRole("User");
-
-            return "OK";
-        }
     }
 }
